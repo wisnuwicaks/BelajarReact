@@ -1,24 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import NewScreen from "./views/components/NewScreen"
-
+// import NewScreen from "./views/components/NewScreen"
+import TableProduct from "./views/components/TableProduct"
+import style from "./style.css"
 function App() {
-  let arr = [1,2,3]
+
  
   return (
     <div className="App">
-      <h1>Hallo coba nih</h1>
-      {/* <NewScreen/> */}
-      {arr.map((val)=>{
-        return (
-        <>
-          <p>{val}</p> 
-          <NewScreen/>
-        </>
-        )
-      })}
-
+    <TableProduct/>
     </div>
   );
 }
