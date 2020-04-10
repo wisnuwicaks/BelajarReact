@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProductCard =(props)=>{
+const ProductCard =(props)=>{////
     //disctructuring
     const {productData} = props
     const {nama, harga, desc,disc,stok} = productData
