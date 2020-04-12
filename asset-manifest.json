@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/wisnuwicaks/BelajarReact/static/css/main.5406b80b.chunk.css",
-    "main.js": "/wisnuwicaks/BelajarReact/static/js/main.a8d8e8b0.chunk.js",
-    "main.js.map": "/wisnuwicaks/BelajarReact/static/js/main.a8d8e8b0.chunk.js.map",
-    "runtime-main.js": "/wisnuwicaks/BelajarReact/static/js/runtime-main.e907206a.js",
-    "runtime-main.js.map": "/wisnuwicaks/BelajarReact/static/js/runtime-main.e907206a.js.map",
-    "static/js/2.f64598ec.chunk.js": "/wisnuwicaks/BelajarReact/static/js/2.f64598ec.chunk.js",
-    "static/js/2.f64598ec.chunk.js.map": "/wisnuwicaks/BelajarReact/static/js/2.f64598ec.chunk.js.map",
-    "index.html": "/wisnuwicaks/BelajarReact/index.html",
-    "precache-manifest.31f1ba07a9db550c7d05976570a86b70.js": "/wisnuwicaks/BelajarReact/precache-manifest.31f1ba07a9db550c7d05976570a86b70.js",
-    "service-worker.js": "/wisnuwicaks/BelajarReact/service-worker.js",
-    "static/css/main.5406b80b.chunk.css.map": "/wisnuwicaks/BelajarReact/static/css/main.5406b80b.chunk.css.map",
-    "static/js/2.f64598ec.chunk.js.LICENSE.txt": "/wisnuwicaks/BelajarReact/static/js/2.f64598ec.chunk.js.LICENSE.txt",
-    "static/media/Brave.png": "/wisnuwicaks/BelajarReact/static/media/Brave.292fa262.png",
-    "static/media/Crazy.png": "/wisnuwicaks/BelajarReact/static/media/Crazy.966a3385.png",
-    "static/media/Educated.png": "/wisnuwicaks/BelajarReact/static/media/Educated.91335220.png",
-    "static/media/Handmaid.png": "/wisnuwicaks/BelajarReact/static/media/Handmaid.6cc4ec42.png",
-    "static/media/logo.svg": "/wisnuwicaks/BelajarReact/static/media/logo.ee7cd8ed.svg"
+    "main.css": "/BelajarReact/static/css/main.5406b80b.chunk.css",
+    "main.js": "/BelajarReact/static/js/main.292d6bc0.chunk.js",
+    "main.js.map": "/BelajarReact/static/js/main.292d6bc0.chunk.js.map",
+    "runtime-main.js": "/BelajarReact/static/js/runtime-main.49a68d99.js",
+    "runtime-main.js.map": "/BelajarReact/static/js/runtime-main.49a68d99.js.map",
+    "static/js/2.f64598ec.chunk.js": "/BelajarReact/static/js/2.f64598ec.chunk.js",
+    "static/js/2.f64598ec.chunk.js.map": "/BelajarReact/static/js/2.f64598ec.chunk.js.map",
+    "index.html": "/BelajarReact/index.html",
+    "precache-manifest.da9e451c6db74354bb59e4e47ec4d298.js": "/BelajarReact/precache-manifest.da9e451c6db74354bb59e4e47ec4d298.js",
+    "service-worker.js": "/BelajarReact/service-worker.js",
+    "static/css/main.5406b80b.chunk.css.map": "/BelajarReact/static/css/main.5406b80b.chunk.css.map",
+    "static/js/2.f64598ec.chunk.js.LICENSE.txt": "/BelajarReact/static/js/2.f64598ec.chunk.js.LICENSE.txt",
+    "static/media/Brave.png": "/BelajarReact/static/media/Brave.292fa262.png",
+    "static/media/Crazy.png": "/BelajarReact/static/media/Crazy.966a3385.png",
+    "static/media/Educated.png": "/BelajarReact/static/media/Educated.91335220.png",
+    "static/media/Handmaid.png": "/BelajarReact/static/media/Handmaid.6cc4ec42.png",
+    "static/media/logo.svg": "/BelajarReact/static/media/logo.ee7cd8ed.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e907206a.js",
+    "static/js/runtime-main.49a68d99.js",
     "static/js/2.f64598ec.chunk.js",
     "static/css/main.5406b80b.chunk.css",
-    "static/js/main.a8d8e8b0.chunk.js"
+    "static/js/main.292d6bc0.chunk.js"
   ]
 }
