@@ -15,6 +15,8 @@ class InputScreen extends React.Component{
         userLogin:'',
         passLogin:'',
         isLogin:false,
+        berhasilLogin:'',
+
     }
   
   
@@ -22,7 +24,7 @@ class InputScreen extends React.Component{
 
 render(){
 
-    const {username,password,user,pass,passRepeat,userLogin,isLogin,passLogin}=this.state
+    const {username,password,user,pass,passRepeat,userLogin,isLogin,passLogin,berhasilLogin}=this.state
 
     const inputHandler = (event,field)=>{
         this.setState({[field]:event.target.value})
@@ -42,24 +44,20 @@ render(){
             alert(`Password anda belum sama`)
         }
     }
-   const auth=(e)=>{
+
+   const validasi=(e)=>{
         e.preventDefault()
-        this.setState({isLogin:true})
-    
-   }
-   const validasi=()=>{
-   
        let cariUser=username.findIndex(val=>val==userLogin)
       
        if(password[cariUser]==passLogin)
         {
-            return <h3>Welcome {userLogin}</h3>;
+            this.setState({berhasilLogin:userLogin})
         }
-        
         else{
-          alert("Pass salah")
+          alert("Pass salah atau user tidak ada")
         }
-     
+        this.refs.userLogin.value = '';
+        this.refs.passLogin.value = '';
    }
 
     return (
@@ -119,11 +117,10 @@ render(){
                 </div>
                
                 <button type="submit" class="btn btn-primary" 
-                onClick={(e)=>auth(e)}>Login</button>
+                onClick={(e)=>validasi(e)}>Login</button>
                 {
-                    isLogin? validasi():null
+                   berhasilLogin? <h3>{`Welcome ${berhasilLogin}`}</h3>:null
                 }
-
                 </form>
             </div>
         
