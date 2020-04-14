@@ -48,9 +48,10 @@ const renderData = ()=>{
 
   return (
     <div className="App">
-      {
+      {/* {
         renderData()
-      }
+      } */}
+      <CounterScreen/>
     </div>
   );
 }
