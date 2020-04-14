@@ -1,3 +1,29 @@
-table,tr,td{
-    border: solid black 1px;
+.tinggi-container {
+  height: 200px;
+  /* border: black 1px solid;  */
+}
+.border-hitam{
+  border: black 1px solid;
+}
+.buttonku{
+  background-color: blue;
+  border: blue 1px solid;
+  color: white;
+  height: 50px;
+  width: 250px;
+}
+.buttonku:hover{
+  background-color: white;
+  border: blue solid 1px;
+  color: blue;
+  height: 50px;
+  width: 250px;
+}
+
+.btn-disable{
+  background-color: grey;
+  border: #ee82ee;
+  color: white;
+  height: 50px;
+  width: 250px;
 }
