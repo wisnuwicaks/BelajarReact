@@ -91,3 +91,82 @@ public class ActivateController : Controller
         return Json(new { success = true });
     }
 }
+
+@model List<UserViewModel>
+
+@{
+    ViewBag.Title = "User Activation";
+}
+
+<h2>User Activation</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.Name</td>
+                <td><input type="checkbox" class="user-checkbox" data-user-id="@user.UserId" @(user.IsActive ? "checked" : "") /></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button id="btnSubmit" class="btn btn-primary">Submit</button>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var initialStates = {};
+
+            $('.user-checkbox').each(function () {
+                var userId = $(this).data('user-id');
+                initialStates[userId] = $(this).prop('checked');
+            });
+
+            $('.user-checkbox').change(function () {
+                var userId = $(this).data('user-id');
+                var isActive = $(this).prop('checked');
+                if (isActive !== initialStates[userId]) {
+                    $(this).data('changed', true);
+                } else {
+                    $(this).removeData('changed');
+                }
+            });
+
+            $('#btnSubmit').click(function () {
+                var data = [];
+                $('.user-checkbox').each(function () {
+                    if ($(this).data('changed')) {
+                        var userId = $(this).data('user-id');
+                        var isActive = $(this).prop('checked');
+                        data.push({ UserId: userId, IsActive: isActive });
+                    }
+                });
+                if (data.length > 0) {
+                    $.ajax({
+                        url: '@Url.Action("UpdateStatus", "Activate")',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function (result) {
+                            alert('Status updated successfully.');
+                        },
+                        error: function (xhr, status, error) {
+                            alert('Error occurred while updating status.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+
