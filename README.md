@@ -1,68 +1,93 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+@model List<UserViewModel>
 
-## Available Scripts
+@{
+    ViewBag.Title = "User Status";
+}
 
-In the project directory, you can run:
+<table class="table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.Name</td>
+                <td>
+                    <input type="checkbox" class="status-checkbox" data-userid="@user.UserId" @(user.Status ? "checked" : "") />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button id="submitBtn">Submit</button>
 
-### `npm start`
+@section scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#submitBtn').click(function () {
+                var data = [];
+                $('.status-checkbox').each(function () {
+                    data.push({
+                        userId: $(this).data('userid'),
+                        status: $(this).is(':checked') ? 'Activated' : 'Inactive'
+                    });
+                });
+                
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UpdateStatus", "Activate")",
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function (response) {
+                        alert("Status updated successfully!");
+                    },
+                    error: function () {
+                        alert("Error updating status.");
+                    }
+                });
+            });
+        });
+    </script>
+}
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
-### `npm test`
+public class ActivateController : Controller
+{
+    private List<UserViewModel> _users = new List<UserViewModel>
+    {
+        new UserViewModel { UserId = 1, Name = "User 1", Status = false },
+        new UserViewModel { UserId = 2, Name = "User 2", Status = false },
+        new UserViewModel { UserId = 3, Name = "User 3", Status = false }
+    };
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    public ActionResult Index()
+    {
+        return View(_users);
+    }
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+    [HttpPost]
+    public JsonResult UpdateStatus(List<UserViewModel> users)
+    {
+        foreach (var user in users)
+        {
+            var existingUser = _users.FirstOrDefault(u => u.UserId == user.UserId);
+            if (existingUser != null)
+            {
+                existingUser.Status = user.Status;
+                // Update status in database here
+            }
+        }
+        return Json(new { success = true });
+    }
+}
