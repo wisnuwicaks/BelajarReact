@@ -170,3 +170,47 @@ public class ActivateController : Controller
     </script>
 }
 
+
+<script>
+    $(document).ready(function () {
+        var changedData = [];
+
+        $('.user-checkbox').change(function () {
+            var userId = $(this).data('user-id');
+            var isActive = $(this).prop('checked');
+            var existingIndex = changedData.findIndex(x => x.UserId === userId);
+
+            if (existingIndex !== -1) {
+                if (isActive === initialStates[userId]) {
+                    // If the checkbox is changed back to its initial state, remove it from the array
+                    changedData.splice(existingIndex, 1);
+                } else {
+                    // Update the existing entry in the array
+                    changedData[existingIndex].IsActive = isActive;
+                }
+            } else {
+                // Add a new entry to the array
+                changedData.push({ UserId: userId, IsActive: isActive });
+            }
+        });
+
+        $('#btnSubmit').click(function () {
+            if (changedData.length > 0) {
+                $.ajax({
+                    url: '@Url.Action("UpdateStatus", "Activate")',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(changedData),
+                    success: function (result) {
+                        alert('Status updated successfully.');
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error occurred while updating status.');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
